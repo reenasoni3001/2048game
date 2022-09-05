@@ -21,6 +21,7 @@ const Board = () => {
 
   React.useEffect(() => {
     initialize();
+    // eslint-disable-next-line
   }, []);
 
   const addInitialNumbers = (newGrid) => {

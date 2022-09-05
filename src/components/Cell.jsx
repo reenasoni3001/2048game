@@ -19,7 +19,9 @@ const Cell = ({ cell }) => {
           alignItems: "center",
         }}
       >
-        {cell}
+        {cell !== 0 ? (
+          <span style={{ fontWeight: "bold", fontSize: 50 }}>{cell}</span>
+        ) : null}
       </CardContent>
     </Card>
   );

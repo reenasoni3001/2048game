@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { Button, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
 

@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@material-ui/core";
+import { getColors } from "../Util/getCellColors";
 
 const Cell = ({ cell }) => {
   return (
@@ -9,7 +10,8 @@ const Cell = ({ cell }) => {
         alignItems: "center",
         height: "98px",
         width: "98px",
-        backgroundColor: "papayawhip",
+        backgroundColor: cell === 0 ? "papayawhip" : getColors(cell),
+        //backgroundColor: "papayawhip",
       }}
     >
       <CardContent

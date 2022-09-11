@@ -257,13 +257,15 @@ const Board = () => {
     <Container
       style={{
         width: "490px",
-        marginTop: "90px",
+        padding: "20px",
       }}
     >
       {state.map((cells, i) => (
         <Grid
           container
           direction="row"
+          justifyContent="center"
+          alignItems="center"
           key={i}
           style={{ backgroundColor: "#bbada0" }}
         >

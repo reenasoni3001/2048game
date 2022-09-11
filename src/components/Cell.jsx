@@ -11,7 +11,6 @@ const Cell = ({ cell }) => {
         height: "98px",
         width: "98px",
         backgroundColor: cell === 0 ? "papayawhip" : getColors(cell),
-        //backgroundColor: "papayawhip",
       }}
     >
       <CardContent

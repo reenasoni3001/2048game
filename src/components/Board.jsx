@@ -11,7 +11,7 @@ import {
   swipeUpUtil,
 } from "../Util/handleKeyfunctions";
 
-const Board = () => {
+const Board = ({ score, setScore }) => {
   const UP_ARROW = 38;
   const DOWN_ARROW = 40;
   const LEFT_ARROW = 37;
@@ -22,8 +22,6 @@ const Board = () => {
     [0, 0, 0, 0],
     [0, 0, 0, 0],
   ]);
-
-  const [score, setScore] = React.useState(0);
 
   const initialize = () => {
     const newGrid = cloneDeep(state);
@@ -121,7 +119,6 @@ const Board = () => {
           ))}
         </Grid>
       ))}
-      {score}
     </Container>
   );
 };

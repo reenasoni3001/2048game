@@ -1,6 +1,5 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { Container } from "@material-ui/core";
+
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
 import {
@@ -10,6 +9,7 @@ import {
   swipeRightUtil,
   swipeUpUtil,
 } from "../Util/handleKeyfunctions";
+import { Container, Grid } from "@mui/material";
 
 const Board = ({ score, setScore }) => {
   const UP_ARROW = 38;
@@ -100,7 +100,7 @@ const Board = ({ score, setScore }) => {
           justifyContent="center"
           alignItems="center"
           key={i}
-          style={{ backgroundColor: "#bbada0" }}
+          sx={{ backgroundColor: "#bbada0" }}
         >
           {cells.map((cell, j) => (
             <Grid

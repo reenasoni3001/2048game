@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@material-ui/core";
+import { Card, CardContent } from "@mui/material";
 import { getColors } from "../Util/getCellColors";
 
 const Cell = ({ cell }) => {
@@ -14,7 +14,7 @@ const Cell = ({ cell }) => {
       }}
     >
       <CardContent
-        style={{
+        sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

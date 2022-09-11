@@ -1,10 +1,9 @@
-import { Box, Typography } from "@material-ui/core";
-
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const Header = ({ score }) => {
   return (
-    <Box style={{ paddingLeft: "50px" }}>
+    <Box style={{ paddingLeft: 50 }}>
       <Typography variant="h1" component="span">
         2048
       </Typography>

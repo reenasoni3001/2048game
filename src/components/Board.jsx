@@ -84,13 +84,17 @@ const Board = ({ score, setScore }) => {
       default:
         break;
     }
+
+    if (state.every((row) => row.every((cell) => cell !== 0))) {
+      alert("game over");
+    }
   };
 
   return (
     <Container
-      style={{
-        width: "490px",
-        padding: "20px",
+      sx={{
+        width: 490,
+        p: 2,
       }}
     >
       {state.map((cells, i) => (
@@ -107,10 +111,6 @@ const Board = ({ score, setScore }) => {
               key={`${i}-${j}`}
               item
               style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                backgroundColor: "#bbada0",
                 margin: 6,
               }}
             >

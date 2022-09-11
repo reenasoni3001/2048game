@@ -104,7 +104,9 @@ const Board = ({ score, setScore }) => {
           justifyContent="center"
           alignItems="center"
           key={i}
-          sx={{ backgroundColor: "#bbada0" }}
+          sx={{
+            backgroundColor: "#F5F9D3",
+          }}
         >
           {cells.map((cell, j) => (
             <Grid

@@ -2,12 +2,12 @@ import React from "react";
 
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
-import {
-  swipeDownUtil,
-  swipeLeftUtil,
-  swipeRightUtil,
-  swipeUpUtil,
-} from "../Util/handleKeyfunctions";
+// import {
+//   swipeDownUtil,
+//   swipeLeftUtil,
+//   swipeRightUtil,
+//   swipeUpUtil,
+// } from "../Util/handleKeyfunctions";
 import { Container, Grid } from "@mui/material";
 import {
   combine,
@@ -19,17 +19,17 @@ import {
   moveUp,
 } from "../Util/handleSwipeFunctions";
 
-const Board = ({ score, setScore }) => {
+const Board = ({ score, setScore, state, setState }) => {
   const UP_ARROW = 38;
   const DOWN_ARROW = 40;
   const LEFT_ARROW = 37;
   const RIGHT_ARROW = 39;
-  const [state, setState] = React.useState([
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ]);
+  // const [state, setState] = React.useState([
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  // ]);
 
   const initialize = () => {
     const newGrid = cloneDeep(state);
@@ -123,9 +123,9 @@ const Board = ({ score, setScore }) => {
         break;
     }
 
-    if (state.every((row) => row.every((cell) => cell !== 0))) {
-      alert("game over");
-    }
+    // if (state.every((row) => row.every((cell) => cell !== 0))) {
+    //   alert("game over");
+    // }
   };
 
   return (

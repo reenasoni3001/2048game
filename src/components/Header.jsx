@@ -1,8 +1,22 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import logo from "../assets/200w.webp";
+import { addNumber } from "../Util/handleSwipeFunctions";
 
-const Header = ({ score }) => {
+const Header = ({ score, state, setState }) => {
+  function resetGame() {
+    const emptyGrid = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+
+    addNumber(emptyGrid);
+    addNumber(emptyGrid);
+    setState(emptyGrid);
+  }
+
   return (
     <Box>
       <Box display="flex" justifyContent="flex-start" alignItems="center">
@@ -46,6 +60,7 @@ const Header = ({ score }) => {
             minHeight: 30,
             background: "#F6CD9B",
           }}
+          onClick={resetGame}
         >
           New Game
         </Button>

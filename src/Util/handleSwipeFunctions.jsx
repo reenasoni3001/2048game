@@ -56,6 +56,7 @@ export function moveLeft(state) {
 //Get column from a two dimensional array
 const arrayColumn = (arr, n) => arr.map((x) => x[n]);
 
+//move the tiles up
 export function moveUp(state) {
   const clonedGrid = cloneDeep(state);
   let newArray = [];
@@ -71,7 +72,6 @@ export function moveUp(state) {
 }
 
 //function to covert column into row
-
 export function convertToRow(colMal) {
   const newArr = [];
   for (let i = 0; i < colMal.length; i++) {
@@ -82,7 +82,6 @@ export function convertToRow(colMal) {
 }
 
 //swipedown
-
 export function moveDown(state) {
   const clonedGrid = cloneDeep(state);
   let newArray = [];

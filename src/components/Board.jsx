@@ -10,6 +10,7 @@ import {
   swipeUpUtil,
 } from "../Util/handleKeyfunctions";
 import { Container, Grid } from "@mui/material";
+import { combine, moveLeft, moveRight } from "../Util/handleSwipeFunctions";
 
 const Board = ({ score, setScore }) => {
   const UP_ARROW = 38;
@@ -36,26 +37,40 @@ const Board = ({ score, setScore }) => {
   }, []);
 
   function swipeLeft() {
-    const newGrid = swipeLeftUtil(state, score, setScore);
-    setState(newGrid);
+    // const newGrid = swipeLeftUtil(state, score, setScore);
+    // setState(newGrid);
+    const newArray = moveLeft(state);
+    const result = combine(newArray);
+    const final = moveLeft(result);
+    if (JSON.stringify(state) !== JSON.stringify(final)) {
+      addNumber(final);
+    }
+    setState(final);
   }
 
   const swipeRight = () => {
-    let newGrid = swipeRightUtil(state, setScore, score);
-    setState(newGrid);
+    // let newGrid = swipeRightUtil(state, setScore, score);
+    // setState(newGrid);
+    const newArray = moveRight(state);
+    const result = combine(newArray);
+    const final = moveRight(result);
+    if (JSON.stringify(state) !== JSON.stringify(final)) {
+      addNumber(final);
+    }
+    setState(final);
   };
 
-  const swipeDown = () => {
-    let newGrid = swipeDownUtil(state, setScore, score);
+  // const swipeDown = () => {
+  //   let newGrid = swipeDownUtil(state, setScore, score);
 
-    setState(newGrid);
-  };
+  //   setState(newGrid);
+  // };
 
-  const swipeUp = () => {
-    let newGrid = swipeUpUtil(state, setScore, score);
+  // const swipeUp = () => {
+  //   let newGrid = swipeUpUtil(state, setScore, score);
 
-    setState(newGrid);
-  };
+  //   setState(newGrid);
+  // };
 
   React.useEffect(() => {
     window.addEventListener("keydown", handleKeyEvents);
@@ -74,12 +89,12 @@ const Board = ({ score, setScore }) => {
       case RIGHT_ARROW:
         swipeRight();
         break;
-      case DOWN_ARROW:
-        swipeDown();
-        break;
-      case UP_ARROW:
-        swipeUp();
-        break;
+      // case DOWN_ARROW:
+      //   swipeDown();
+      //   break;
+      // case UP_ARROW:
+      //   swipeUp();
+      //   break;
 
       default:
         break;

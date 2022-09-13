@@ -67,12 +67,19 @@ const Board = ({ score, setScore }) => {
     setState(final);
   };
 
-  // const swipeDown = () => {
-  //   let newGrid = swipeDownUtil(state, setScore, score);
+  const swipeDown = () => {
+    // let newGrid = swipeDownUtil(state, setScore, score);
 
-  //   setState(newGrid);
-
-  // };
+    // setState(newGrid);
+    const newArray = moveDown(state);
+    const combined = combine(newArray);
+    const moved = moveRight(combined);
+    const final = convertToRow(moved);
+    if (JSON.stringify(state) !== JSON.stringify(final)) {
+      addNumber(final);
+    }
+    setState(final);
+  };
 
   const swipeUp = () => {
     //   let newGrid = swipeUpUtil(state, setScore, score);
@@ -105,9 +112,9 @@ const Board = ({ score, setScore }) => {
       case RIGHT_ARROW:
         swipeRight();
         break;
-      // case DOWN_ARROW:
-      //   swipeDown();
-      //   break;
+      case DOWN_ARROW:
+        swipeDown();
+        break;
       case UP_ARROW:
         swipeUp();
         break;

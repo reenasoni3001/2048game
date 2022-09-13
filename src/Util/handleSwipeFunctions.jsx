@@ -80,3 +80,19 @@ export function convertToRow(colMal) {
   }
   return newArr;
 }
+
+//swipedown
+
+export function moveDown(state) {
+  const clonedGrid = cloneDeep(state);
+  let newArray = [];
+  for (let i = 0; i < clonedGrid.length; i++) {
+    const column = arrayColumn(clonedGrid, i);
+    const filteredColumn = column.filter((col) => col !== 0);
+    let missing = 4 - filteredColumn.length;
+    let zeros = Array(missing).fill(0);
+    let newRow = filteredColumn.concat(zeros);
+    newArray.push(newRow);
+  }
+  return newArray;
+}

@@ -10,7 +10,7 @@ const Cell = ({ cell }) => {
         alignItems: "center",
         height: "98px",
         width: "98px",
-        backgroundColor: cell === 0 ? "#F6CD9B" : getColors(cell),
+        backgroundColor: cell === 0 ? "#FFF7CC" : getColors(cell),
       }}
     >
       <CardContent

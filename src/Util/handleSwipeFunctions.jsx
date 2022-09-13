@@ -1,5 +1,17 @@
 import { cloneDeep } from "lodash";
 
+//adding number to random tile which has zero element
+export const addNumber = (newGrid) => {
+  let rand1 = Math.floor(Math.random() * 4);
+  let rand2 = Math.floor(Math.random() * 4);
+
+  if (newGrid[rand1][rand2] === 0) {
+    newGrid[rand1][rand2] = Math.random() > 0.7 ? 4 : 2;
+  } else {
+    addNumber(newGrid);
+  }
+};
+
 //move the tiles to right
 export function moveRight(state) {
   const clonedGrid = cloneDeep(state);
@@ -39,4 +51,32 @@ export function moveLeft(state) {
     newGrid.push(newRow);
   }
   return newGrid;
+}
+
+//Get column from a two dimensional array
+const arrayColumn = (arr, n) => arr.map((x) => x[n]);
+
+export function moveUp(state) {
+  const clonedGrid = cloneDeep(state);
+  let newArray = [];
+  for (let i = 0; i < clonedGrid.length; i++) {
+    const column = arrayColumn(clonedGrid, i);
+    const filteredColumn = column.filter((col) => col !== 0);
+    let missing = 4 - filteredColumn.length;
+    let zeros = Array(missing).fill(0);
+    let newRow = zeros.concat(filteredColumn);
+    newArray.push(newRow);
+  }
+  return newArray;
+}
+
+//function to covert column into row
+
+export function convertToRow(colMal) {
+  const newArr = [];
+  for (let i = 0; i < colMal.length; i++) {
+    const res = arrayColumn(colMal, i);
+    newArr.push(res);
+  }
+  return newArr;
 }

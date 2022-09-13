@@ -3,14 +3,21 @@ import React from "react";
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
 import {
-  addNumber,
   swipeDownUtil,
   swipeLeftUtil,
   swipeRightUtil,
   swipeUpUtil,
 } from "../Util/handleKeyfunctions";
 import { Container, Grid } from "@mui/material";
-import { combine, moveLeft, moveRight } from "../Util/handleSwipeFunctions";
+import {
+  combine,
+  moveLeft,
+  moveRight,
+  addNumber,
+  moveDown,
+  convertToRow,
+  moveUp,
+} from "../Util/handleSwipeFunctions";
 
 const Board = ({ score, setScore }) => {
   const UP_ARROW = 38;
@@ -64,13 +71,22 @@ const Board = ({ score, setScore }) => {
   //   let newGrid = swipeDownUtil(state, setScore, score);
 
   //   setState(newGrid);
+
   // };
 
-  // const swipeUp = () => {
-  //   let newGrid = swipeUpUtil(state, setScore, score);
+  const swipeUp = () => {
+    //   let newGrid = swipeUpUtil(state, setScore, score);
 
-  //   setState(newGrid);
-  // };
+    //   setState(newGrid);
+    const newArray = moveUp(state);
+    const combined = combine(newArray);
+    const moved = moveLeft(combined);
+    const final = convertToRow(moved);
+    if (JSON.stringify(state) !== JSON.stringify(final)) {
+      addNumber(final);
+    }
+    setState(final);
+  };
 
   React.useEffect(() => {
     window.addEventListener("keydown", handleKeyEvents);
@@ -92,9 +108,9 @@ const Board = ({ score, setScore }) => {
       // case DOWN_ARROW:
       //   swipeDown();
       //   break;
-      // case UP_ARROW:
-      //   swipeUp();
-      //   break;
+      case UP_ARROW:
+        swipeUp();
+        break;
 
       default:
         break;

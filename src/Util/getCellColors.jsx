@@ -1,7 +1,7 @@
 export const getColors = (num) => {
   switch (num) {
     case 2:
-      return "#FFF7CC";
+      return "#F6CD9B";
     case 4:
       return "#DDD8BB";
     case 8:

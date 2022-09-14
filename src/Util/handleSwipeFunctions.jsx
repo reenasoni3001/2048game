@@ -32,6 +32,7 @@ export function combine(sortedArray) {
     for (let j = 0; j < sortedArray.length; j++)
       if (sortedArray[i][j] === sortedArray[i][j + 1]) {
         let combinedTotal = sortedArray[i][j] + sortedArray[i][j + 1];
+
         sortedArray[i][j] = combinedTotal;
         sortedArray[i][j + 1] = 0;
       }

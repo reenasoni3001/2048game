@@ -8,13 +8,10 @@ function App() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        //background: "linear-gradient(to right, #ad5389, #3c1053)",
-        // background:
-        //   " linear-gradient(to left, #f0ce92, #f4b38f, #eb9b97, #d38aa3, #af7fab)",
-        background:
-          "linear-gradient(to bottom, #f0ce92, #f4b38f, #eb9b97, #d38aa3, #af7fab)",
-        height: "100vh",
-        minWidth: "100vh",
+        //height: "100vh",
+        //minWidth: "100vh",
+        minHeight: { xs: 12, md: 12, sm: 12, lg: 12, xl: 12 },
+        minWidth: { xs: 12, md: 12, sm: 12 },
       }}
     >
       <Grid item xs={12} md={12} sm={12}>

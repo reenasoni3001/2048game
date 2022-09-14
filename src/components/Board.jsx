@@ -24,12 +24,6 @@ const Board = ({ score, setScore, state, setState }) => {
   const DOWN_ARROW = 40;
   const LEFT_ARROW = 37;
   const RIGHT_ARROW = 39;
-  // const [state, setState] = React.useState([
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  // ]);
 
   const initialize = () => {
     const newGrid = cloneDeep(state);
@@ -43,6 +37,35 @@ const Board = ({ score, setScore, state, setState }) => {
     // eslint-disable-next-line
   }, []);
 
+  function checkForGameOver() {
+    let checker = swipeLeft();
+    console.log("checker", checker);
+    console.log("state", state);
+    if (JSON.stringify(state) !== JSON.stringify(checker)) {
+      return false;
+    }
+
+    let checker2 = swipeDown();
+
+    if (JSON.stringify(state) !== JSON.stringify(checker2)) {
+      return false;
+    }
+
+    let checker3 = swipeRight();
+
+    if (JSON.stringify(state) !== JSON.stringify(checker3)) {
+      return false;
+    }
+
+    let checker4 = swipeUp();
+
+    if (JSON.stringify(state) !== JSON.stringify(checker4)) {
+      return false;
+    }
+
+    return true;
+  }
+
   function swipeLeft() {
     // const newGrid = swipeLeftUtil(state, score, setScore);
     // setState(newGrid);
@@ -52,7 +75,9 @@ const Board = ({ score, setScore, state, setState }) => {
     if (JSON.stringify(state) !== JSON.stringify(final)) {
       addNumber(final);
     }
+
     setState(final);
+    return final;
   }
 
   const swipeRight = () => {
@@ -65,6 +90,7 @@ const Board = ({ score, setScore, state, setState }) => {
       addNumber(final);
     }
     setState(final);
+    return final;
   };
 
   const swipeDown = () => {
@@ -79,6 +105,7 @@ const Board = ({ score, setScore, state, setState }) => {
       addNumber(final);
     }
     setState(final);
+    return final;
   };
 
   const swipeUp = () => {
@@ -93,6 +120,7 @@ const Board = ({ score, setScore, state, setState }) => {
       addNumber(final);
     }
     setState(final);
+    return final;
   };
 
   React.useEffect(() => {
@@ -123,15 +151,19 @@ const Board = ({ score, setScore, state, setState }) => {
         break;
     }
 
-    // if (state.every((row) => row.every((cell) => cell !== 0))) {
-    //   alert("game over");
-    // }
+    if (state.every((row) => row.every((cell) => cell !== 0))) {
+      let game = checkForGameOver();
+      console.log(game);
+      if (game) {
+        alert("gameover");
+      }
+    }
   };
 
   return (
     <Container
       sx={{
-        width: 490,
+        width: { sm: 490, xs: 490, md: 490 },
         p: 2,
       }}
     >
@@ -143,7 +175,8 @@ const Board = ({ score, setScore, state, setState }) => {
           alignItems="center"
           key={i}
           sx={{
-            backgroundColor: "#F5F9D3",
+            //backgroundColor: "#F5F9D3",
+            backgroundColor: "#CBAC76",
           }}
         >
           {cells.map((cell, j) => (

@@ -4,13 +4,10 @@ import { getColors } from "../Util/getCellColors";
 const Cell = ({ cell }) => {
   return (
     <Card
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "98px",
-        width: "98px",
-        backgroundColor: cell === 0 ? "#FFF7CC" : getColors(cell),
+      sx={{
+        minHeight: "98px",
+        minWidth: "98px",
+        bgcolor: cell === 0 ? "#FFF7CC" : getColors(cell),
       }}
     >
       <CardContent

@@ -17,23 +17,25 @@ export function moveRight(state) {
   const clonedGrid = cloneDeep(state);
   let newGrid = [];
   for (let i = 0; i < clonedGrid.length; i++) {
-    const filteredRow = clonedGrid[i].filter((row) => row !== 0);
-    let missingElements = 4 - filteredRow.length;
-    let addZeros = Array(missingElements).fill(0);
-    let newRow = addZeros.concat(filteredRow);
+    //filledCells
+    const filledCells = clonedGrid[i].filter((row) => row !== 0);
+    //emptyCells
+    let emptyCells = 4 - filledCells.length;
+    let addZeros = Array(emptyCells).fill(0);
+    let newRow = addZeros.concat(filledCells);
     newGrid.push(newRow);
   }
   return newGrid;
 }
 
 //combine the tiles with same value
-export function combine(sortedArray) {
+export function combine(sortedArray, score, setScore) {
   for (let i = 0; i < sortedArray.length; i++) {
     for (let j = 0; j < sortedArray.length; j++)
       if (sortedArray[i][j] === sortedArray[i][j + 1]) {
         let combinedTotal = sortedArray[i][j] + sortedArray[i][j + 1];
-
         sortedArray[i][j] = combinedTotal;
+        setScore((prevScore) => prevScore + combinedTotal);
         sortedArray[i][j + 1] = 0;
       }
   }
@@ -45,10 +47,10 @@ export function moveLeft(state) {
   const clonedGrid = cloneDeep(state);
   let newGrid = [];
   for (let i = 0; i < clonedGrid.length; i++) {
-    const filteredRow = clonedGrid[i].filter((row) => row !== 0);
-    let missingElements = 4 - filteredRow.length;
-    let addZeros = Array(missingElements).fill(0);
-    let newRow = filteredRow.concat(addZeros);
+    const filledCells = clonedGrid[i].filter((row) => row !== 0);
+    let emptyCells = 4 - filledCells.length;
+    let addZeros = Array(emptyCells).fill(0);
+    let newRow = filledCells.concat(addZeros);
     newGrid.push(newRow);
   }
   return newGrid;
@@ -63,36 +65,41 @@ export function moveUp(state) {
   let newArray = [];
   for (let i = 0; i < clonedGrid.length; i++) {
     const column = arrayColumn(clonedGrid, i);
-    const filteredColumn = column.filter((col) => col !== 0);
-    let missing = 4 - filteredColumn.length;
-    let zeros = Array(missing).fill(0);
-    let newRow = zeros.concat(filteredColumn);
+    const filledCells = column.filter((col) => col !== 0);
+    let emptyCells = 4 - filledCells.length;
+    let addZeros = Array(emptyCells).fill(0);
+    let newRow = addZeros.concat(filledCells);
     newArray.push(newRow);
   }
   return newArray;
 }
 
 //function to covert column into row
-export function convertToRow(colMal) {
-  const newArr = [];
-  for (let i = 0; i < colMal.length; i++) {
-    const res = arrayColumn(colMal, i);
-    newArr.push(res);
+//rotate matrix
+// #Rotating the matrix using buffer
+// for i in range(N):
+//     for j in range(N):
+//         rot[i][j] = arr[j][N-i-1]
+export function rotateGrid(grid) {
+  const newGrid = [];
+  for (let i = 0; i < grid.length; i++) {
+    const row = arrayColumn(grid, i);
+    newGrid.push(row);
   }
-  return newArr;
+  return newGrid;
 }
 
 //swipedown
 export function moveDown(state) {
   const clonedGrid = cloneDeep(state);
-  let newArray = [];
+  let newGrid = [];
   for (let i = 0; i < clonedGrid.length; i++) {
     const column = arrayColumn(clonedGrid, i);
-    const filteredColumn = column.filter((col) => col !== 0);
-    let missing = 4 - filteredColumn.length;
-    let zeros = Array(missing).fill(0);
-    let newRow = filteredColumn.concat(zeros);
-    newArray.push(newRow);
+    const filledCells = column.filter((col) => col !== 0);
+    let emptyCells = 4 - filledCells.length;
+    let addZeros = Array(emptyCells).fill(0);
+    let newRow = filledCells.concat(addZeros);
+    newGrid.push(newRow);
   }
-  return newArray;
+  return newGrid;
 }

@@ -1,13 +1,6 @@
 import React from "react";
-
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
-// import {
-//   swipeDownUtil,
-//   swipeLeftUtil,
-//   swipeRightUtil,
-//   swipeUpUtil,
-// } from "../Util/handleKeyfunctions";
 import { Container, Grid } from "@mui/material";
 import {
   combine,
@@ -15,7 +8,7 @@ import {
   moveRight,
   addNumber,
   moveDown,
-  convertToRow,
+  rotateGrid,
   moveUp,
 } from "../Util/handleSwipeFunctions";
 
@@ -39,8 +32,7 @@ const Board = ({ score, setScore, state, setState }) => {
 
   function checkForGameOver() {
     let checker = swipeLeft();
-    console.log("checker", checker);
-    console.log("state", state);
+
     if (JSON.stringify(state) !== JSON.stringify(checker)) {
       return false;
     }
@@ -67,10 +59,8 @@ const Board = ({ score, setScore, state, setState }) => {
   }
 
   function swipeLeft() {
-    // const newGrid = swipeLeftUtil(state, score, setScore);
-    // setState(newGrid);
     const newArray = moveLeft(state);
-    const result = combine(newArray);
+    const result = combine(newArray, score, setScore);
     const final = moveLeft(result);
     if (JSON.stringify(state) !== JSON.stringify(final)) {
       addNumber(final);
@@ -81,10 +71,8 @@ const Board = ({ score, setScore, state, setState }) => {
   }
 
   const swipeRight = () => {
-    // let newGrid = swipeRightUtil(state, setScore, score);
-    // setState(newGrid);
     const newArray = moveRight(state);
-    const result = combine(newArray);
+    const result = combine(newArray, score, setScore);
     const final = moveRight(result);
     if (JSON.stringify(state) !== JSON.stringify(final)) {
       addNumber(final);
@@ -94,13 +82,10 @@ const Board = ({ score, setScore, state, setState }) => {
   };
 
   const swipeDown = () => {
-    // let newGrid = swipeDownUtil(state, setScore, score);
-
-    // setState(newGrid);
     const newArray = moveDown(state);
-    const combined = combine(newArray);
+    const combined = combine(newArray, score, setScore);
     const moved = moveRight(combined);
-    const final = convertToRow(moved);
+    const final = rotateGrid(moved);
     if (JSON.stringify(state) !== JSON.stringify(final)) {
       addNumber(final);
     }
@@ -109,13 +94,10 @@ const Board = ({ score, setScore, state, setState }) => {
   };
 
   const swipeUp = () => {
-    //   let newGrid = swipeUpUtil(state, setScore, score);
-
-    //   setState(newGrid);
     const newArray = moveUp(state);
-    const combined = combine(newArray);
+    const combined = combine(newArray, score, setScore);
     const moved = moveLeft(combined);
-    const final = convertToRow(moved);
+    const final = rotateGrid(moved);
     if (JSON.stringify(state) !== JSON.stringify(final)) {
       addNumber(final);
     }
@@ -150,7 +132,6 @@ const Board = ({ score, setScore, state, setState }) => {
       default:
         break;
     }
-
     if (state.every((row) => row.every((cell) => cell !== 0))) {
       let game = checkForGameOver();
       console.log(game);
@@ -163,8 +144,8 @@ const Board = ({ score, setScore, state, setState }) => {
   return (
     <Container
       sx={{
-        width: { sm: 490, xs: 490, md: 490 },
-        p: 2,
+        margin: 0,
+        height: "100%",
       }}
     >
       {state.map((cells, i) => (
@@ -175,7 +156,7 @@ const Board = ({ score, setScore, state, setState }) => {
           alignItems="center"
           key={i}
           sx={{
-            //backgroundColor: "#F5F9D3",
+            width: "fit-content",
             backgroundColor: "#CBAC76",
           }}
         >
@@ -183,8 +164,8 @@ const Board = ({ score, setScore, state, setState }) => {
             <Grid
               key={`${i}-${j}`}
               item
-              style={{
-                margin: 6,
+              sx={{
+                margin: 0.7,
               }}
             >
               <Cell cell={cell} />

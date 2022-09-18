@@ -18,18 +18,20 @@ const Header = ({ score, state, setState }) => {
   }
 
   return (
-    <Box>
+    <Box xs={12} md={12}>
       <Box display="flex" justifyContent="flex-start" alignItems="center">
         <Typography variant="h1" component="span" p={2}>
           2048
         </Typography>
         <Box component="img" sx={{ height: 90 }} alt="2048!" src={logo} />
       </Box>
-      <Typography variant="h5">Join the tiles, get to 2048!</Typography>
-      <Typography variant="h6" component="p">
-        HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the same
-        number merge into one when they touch. Add them up to reach 2048!
-      </Typography>
+      <Box display="flex" justifyContent="flex-start" flexDirection="column">
+        <Typography variant="h5">Join the tiles, get to 2048!</Typography>
+        <Typography variant="h6" component="p">
+          HOW TO PLAY: Use your arrow keys to move the tiles. Tiles with the
+          same number merge into one when they touch. Add them up to reach 2048!
+        </Typography>
+      </Box>
       <Box
         display="flex"
         alignItems="center"

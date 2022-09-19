@@ -5,8 +5,8 @@ const Cell = ({ cell }) => {
   return (
     <Card
       sx={{
-        minHeight: "98px",
-        minWidth: "98px",
+        height: "98px",
+        width: "98px",
         bgcolor: cell === 0 ? "#FFF7CC" : getColors(cell),
       }}
     >

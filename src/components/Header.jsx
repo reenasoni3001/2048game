@@ -1,9 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, styled, Typography } from "@mui/material";
 import React from "react";
 import logo from "../assets/200w.webp";
 import { addNumber } from "../Util/handleSwipeFunctions";
 
-const Header = ({ score, state, setState }) => {
+const Title = styled(Typography)(() => ({
+  color: "#eee",
+}));
+
+const Header = ({ score, state, setState, setScore }) => {
   function resetGame() {
     const emptyGrid = [
       [0, 0, 0, 0],
@@ -15,14 +19,15 @@ const Header = ({ score, state, setState }) => {
     addNumber(emptyGrid);
     addNumber(emptyGrid);
     setState(emptyGrid);
+    setScore(0);
   }
 
   return (
     <Box xs={12} md={12}>
       <Box display="flex" justifyContent="flex-start" alignItems="center">
-        <Typography variant="h1" component="span" p={2}>
+        <Title className="heading" variant="h1" component="span" p={2}>
           2048
-        </Typography>
+        </Title>
         <Box component="img" sx={{ height: 90 }} alt="2048!" src={logo} />
       </Box>
       <Box display="flex" justifyContent="flex-start" flexDirection="column">

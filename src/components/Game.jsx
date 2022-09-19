@@ -18,14 +18,24 @@ const Game = () => {
       sx={{
         height: "100%",
         width: "100%",
-        p: 3.5,
+        p: 3.6,
         background:
           "linear-gradient(to bottom, #f0ce92, #f4b38f, #eb9b97, #d38aa3, #af7fab)",
       }}
     >
-      <Grid container justifyContent="center" direction="row">
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        direction="row"
+      >
         <Grid item xs={12} sm={12} md={6} paddingBottom={3}>
-          <Header score={score} state={state} setState={setState} />
+          <Header
+            score={score}
+            state={state}
+            setState={setState}
+            setScore={setScore}
+          />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
           <Board

@@ -128,7 +128,6 @@ const Board = ({ score, setScore, state, setState }) => {
       case UP_ARROW:
         swipeUp();
         break;
-
       default:
         break;
     }
@@ -143,10 +142,10 @@ const Board = ({ score, setScore, state, setState }) => {
 
   return (
     <Container
-      sx={{
-        margin: 0,
-        height: "100%",
-      }}
+    // sx={{
+    //   margin: 0,
+    //   height: "100%",
+    // }}
     >
       {state.map((cells, i) => (
         <Grid

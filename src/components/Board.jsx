@@ -1,7 +1,7 @@
 import React from "react";
 import Cell from "./Cell";
 import { cloneDeep } from "lodash";
-import { Container, Grid } from "@mui/material";
+import { Container, createTheme, Grid, ThemeProvider } from "@mui/material";
 import {
   combine,
   moveLeft,
@@ -11,6 +11,18 @@ import {
   rotateGrid,
   moveUp,
 } from "../Util/handleSwipeFunctions";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 500,
+      sm: 600,
+      md: 1200,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 const Board = ({ score, setScore, state, setState }) => {
   const UP_ARROW = 38;
@@ -141,38 +153,40 @@ const Board = ({ score, setScore, state, setState }) => {
   };
 
   return (
-    <Container
-    // sx={{
-    //   margin: 0,
-    //   height: "100%",
-    // }}
-    >
-      {state.map((cells, i) => (
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          key={i}
-          sx={{
-            width: "fit-content",
-            backgroundColor: "#CBAC76",
-          }}
-        >
-          {cells.map((cell, j) => (
-            <Grid
-              key={`${i}-${j}`}
-              item
-              sx={{
-                margin: 0.7,
-              }}
-            >
-              <Cell cell={cell} />
-            </Grid>
-          ))}
-        </Grid>
-      ))}
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container
+      // sx={{
+      //   margin: 0,
+      //   height: "100%",
+      // }}
+      >
+        {state.map((cells, i) => (
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            key={i}
+            sx={{
+              width: "fit-content",
+              backgroundColor: "#CBAC76",
+            }}
+          >
+            {cells.map((cell, j) => (
+              <Grid
+                key={`${i}-${j}`}
+                item
+                sx={{
+                  margin: 0.7,
+                }}
+              >
+                <Cell cell={cell} />
+              </Grid>
+            ))}
+          </Grid>
+        ))}
+      </Container>
+    </ThemeProvider>
   );
 };
 

@@ -1,4 +1,13 @@
-import { Card, CardContent, keyframes, styled } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  keyframes,
+  styled,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import { getColors } from "../Util/getCellColors";
 
 const scaleUpCenter = keyframes`
@@ -12,21 +21,70 @@ const scaleUpCenter = keyframes`
 }
 `;
 
-const Cells = styled(Card)(() => ({
-  height: "98px",
-  width: "98px",
-  "&:hover": {
-    animation: `${scaleUpCenter} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both `,
+// const Cells = styled(Card)(() => ({
+//   height: "98px",
+//   width: "98px",
+//   "&:hover": {
+//     animation: `${scaleUpCenter} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both `,
+//   },
+// }));
+
+const Cells = styled(Card)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    height: "98px",
+    width: "98px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    height: "98px",
+    width: "98px",
+  },
+  [theme.breakpoints.down("xs")]: {
+    height: "65px",
+    width: "65px",
+  },
+}));
+
+const CellText = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    fontWeight: "bold",
+    fontSize: 50,
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontWeight: "bold",
+    fontSize: 50,
+  },
+
+  [theme.breakpoints.down("xs")]: {
+    fontWeight: "bold",
+    fontSize: "40px",
   },
 }));
 
 const Cell = ({ cell }) => {
+  // const [showAnimation, setShowAnimation] = useState(false);
+
+  // const prev = useRef(cell);
+
+  // useEffect(() => {
+  //   if (prev.current === 0 && cell) {
+  //     setShowAnimation(true);
+  //   } else {
+  //     setShowAnimation(false);
+  //   }
+
+  //   prev.current = cell;
+  // }, [cell]);
+
   return (
     <Cells
       sx={{
-        // height: "98px",
-        // width: "98px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         bgcolor: cell === 0 ? "#FFF7CC" : getColors(cell),
+        // animation: showAnimation
+        //   ? `${scaleUpCenter} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both `
+        //   : null,
       }}
     >
       <CardContent
@@ -36,9 +94,7 @@ const Cell = ({ cell }) => {
           alignItems: "center",
         }}
       >
-        {cell !== 0 ? (
-          <span style={{ fontWeight: "bold", fontSize: 50 }}>{cell}</span>
-        ) : null}
+        {cell !== 0 ? <CellText>{cell}</CellText> : null}
       </CardContent>
     </Cells>
   );
